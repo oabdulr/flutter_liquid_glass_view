@@ -136,11 +136,13 @@ class _LiquidGlassDemoState extends State<LiquidGlassDemo> {
               minimum: const EdgeInsets.all(12),
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 620),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: const Color(0xCC11131A),
+                // A Material (not a coloured DecoratedBox) so the switch
+                // tiles' ink splashes paint on the panel itself.
+                child: Material(
+                  color: const Color(0xCC11131A),
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24),
-                    border: Border.all(color: const Color(0x33FFFFFF)),
+                    side: const BorderSide(color: Color(0x33FFFFFF)),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(16, 12, 16, 10),
