@@ -1,0 +1,31 @@
+# A .pubignore replaces this directory's .gitignore for `dart pub publish`,
+# so it repeats those rules and adds files that belong in git but not on
+# pub.dev.
+
+# From .gitignore
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+*.iml
+*.ipr
+*.iws
+.idea/
+/pubspec.lock
+**/doc/api/
+.dart_tool/
+.flutter-plugins-dependencies
+/build/
+/coverage/
+/test_artifacts/
+
+# Repository-only files
+.github/
+/doc/
+example/build/

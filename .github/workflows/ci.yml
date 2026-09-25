@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Flutter ${{ matrix.flutter }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The minimum supported release and the latest stable.
+        flutter: ['3.41.x', 'any']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ matrix.flutter }}
+          cache: true
+
+      - name: Install dependencies
+        run: |
+          flutter pub get
+          (cd example && flutter pub get)
+
+      - name: Check formatting
+        # Formatter output can change between Dart releases; check it once.
+        if: matrix.flutter == '3.41.x'
+        run: dart format --output=none --set-exit-if-changed lib test example/lib example/test example/integration_test example/test_driver
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test package
+        run: flutter test
+
+      - name: Test example
+        working-directory: example
+        run: flutter test
+
+      - name: Validate package
+        run: flutter pub publish --dry-run

@@ -1,0 +1,36 @@
+name: liquid_glass_view
+description: >-
+  iOS 26-style liquid glass for Flutter: real refraction, chromatic
+  dispersion, blur, tint, drag, elastic, and touch effects, rendered live on
+  the GPU. A port of AndroidLiquidGlassView.
+version: 1.0.0
+homepage: https://github.com/oabdulr/liquid_glass_view
+repository: https://github.com/oabdulr/liquid_glass_view
+issue_tracker: https://github.com/oabdulr/liquid_glass_view/issues
+topics:
+  - liquid-glass
+  - glassmorphism
+  - shader
+  - refraction
+  - impeller
+
+screenshots:
+  - description: Demo app with the default glass and with blur and tint.
+    path: screenshots/preview.jpg
+
+environment:
+  sdk: ^3.11.0
+  flutter: ">=3.41.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  shaders:
+    - shaders/liquid_glass.frag
